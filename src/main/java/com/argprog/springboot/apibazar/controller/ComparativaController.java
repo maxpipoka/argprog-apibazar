@@ -1,5 +1,7 @@
 package com.argprog.springboot.apibazar.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,5 +23,15 @@ public class ComparativaController {
     @GetMapping("/comparativa/highest")
     public Producto getHighestPriceProduct(){
         return compaInter.getHighestPriceProduct();
+    }
+
+    @GetMapping("/comparativa/lowertohighest")
+    public List<Producto> getLowerToHighestList(){
+        return compaInter.getLowerToHighestPriceList();
+    }
+
+    @GetMapping("/comparativa/highesttolower")
+    public List<Producto> getHighestToLowerList(){
+        return compaInter.getHighestToLowerPriceList();
     }
 }
