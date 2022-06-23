@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.argprog.springboot.apibazar.model.Producto;
 import com.argprog.springboot.apibazar.service.IProductoService;
@@ -33,18 +34,18 @@ public class ProductoController {
         prodInter.deleteProducto(idProducto);
     }
 
-    @PutMapping("/productos/editar/{id}")
+    @PutMapping("/productos/editar/{idProducto}")
     public void editProducto(@PathVariable Long idProducto,
-                            @RequestBody String nombre,
-                            @RequestBody double precio){
+                            @RequestParam ("nombre") String nombre,
+                            @RequestParam ("precio") double precio){
         Producto productoAEditar = prodInter.findProductoById(idProducto);
         productoAEditar.setNombre(nombre);
         productoAEditar.setPrecio(precio);
         prodInter.saveProducto(productoAEditar);
                             }
 
-    @GetMapping("/productos/traer/{id}")
-    public Producto findProductoById(Long idProducto){
+    @GetMapping("/productos/traer/{idProducto}")
+    public Producto findProductoById(@PathVariable Long idProducto){
         return prodInter.findProductoById(idProducto);
     }
 
